@@ -1,0 +1,57 @@
+version: '2'
+networks:
+    app-tier:
+        driver: bridge
+services:
+    mariadb:
+        image: docker.io/bitnami/mariadb:10.6
+        environment:
+            # ALLOW_EMPTY_PASSWORD is recommended only for development.
+            - ALLOW_EMPTY_PASSWORD=yes
+            - MARIADB_USER=bn_myapp
+            - MARIADB_DATABASE=bitnami_myapp
+    composer:
+        build: ./docker
+    myapp:
+        image: docker.io/bitnami/laravel:9
+        ports:
+            - '8001:8000'
+        environment:
+            - DB_HOST=mariadb
+            - DB_PORT=3306
+            - DB_USERNAME=bn_myapp
+            - DB_DATABASE=bitnami_myapp
+        volumes:
+            - '.:/app'
+        depends_on:
+            - mariadb
+    redis:
+        image: 'bitnami/redis:latest'
+        ports:
+            - '6379:6379'
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        networks:
+            - app-tier
+    mariadbs:
+        image: docker.io/bitnami/mariadb:10.6
+        environment:
+            # ALLOW_EMPTY_PASSWORD is recommended only for development.
+            - ALLOW_EMPTY_PASSWORD=yes
+            - MARIADB_USER=bn_myapps
+            - MARIADB_DATABASE=backups
+    composer:
+        build: ./docker
+    myapps:
+        image: docker.io/bitnami/laravel:9
+        ports:
+            - '8002:8000'
+        environment:
+            - DB_HOST_TEST=mariadbs
+            - DB_PORT_TEST=3306
+            - DB_USERNAME_TEST=bn_myapps
+            - DB_DATABASE_TEST=backups
+        volumes:
+            - '.:/app'
+        depends_on:
+            - mariadbs

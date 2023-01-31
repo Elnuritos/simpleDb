@@ -1,0 +1,29 @@
+{
+  "name": "elnuritos/insaleapi",
+  "description": "InSales API",
+  "version": "1.0",
+  "keywords": ["API", "InSales", "REST"],
+
+  "authors": [
+    {
+      "name": "Elnur Safarov",
+      "email": "elnu1990@list.ru"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Insales\\": "src",
+      "Insales\\Library\\": "src/Library",
+      "Insales\\Entities\\": "src/Entities",
+      "Insales\\Abstracts\\": "src/Abstracts",
+      "Insales\\Handlers\\": "src/Handlers",
+      "Insales\\Interfaces\\": "src/Interfaces",
+      "Insales\\Traits\\": "src/Traits"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "burnfigure/reworker-sdk",
+  "description": "Reworker SDK PHP-client",
+  "version": "2.1",
+  "keywords": [
+    "reworker", "api", "sdk", "client", "php"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vladimir Nikitin",
+      "email": "burnfigure@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Reworker\\": "src",
+      "Reworker\\Library\\": "src/Library",
+      "Reworker\\Entities\\": "src/Entities",
+      "Reworker\\Abstracts\\": "src/Abstracts",
+      "Reworker\\Handlers\\": "src/Handlers",
+      "Reworker\\Interfaces\\": "src/Interfaces",
+      "Reworker\\Traits\\": "src/Traits"
+    }
+  }
+}
+
+
+
+

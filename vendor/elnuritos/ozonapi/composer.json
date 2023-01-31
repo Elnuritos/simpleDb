@@ -1,0 +1,29 @@
+{
+  "name": "elnuritos/ozonapi",
+  "description": "Ozon API",
+  "version": "1.0",
+  "keywords": ["API", "Ozon", "REST"],
+
+  "authors": [
+    {
+      "name": "Elnur Safarov",
+      "email": "elnu1990@list.ru"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ozon\\": "src",
+      "Ozon\\Library\\": "src/Library",
+      "Ozon\\Entities\\": "src/Entities",
+      "Ozon\\Abstracts\\": "src/Abstracts",
+      "Ozon\\Handlers\\": "src/Handlers",
+      "Ozon\\Interfaces\\": "src/Interfaces",
+      "Ozon\\Traits\\": "src/Traits"
+    }
+  }
+}

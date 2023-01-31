@@ -1,0 +1,34 @@
+language: php
+os: linux
+dist: xenial
+
+jobs:
+    fast_finish: true
+    include:
+        - php: 7.3
+        - php: 7.4
+        - php: 8.0
+        - php: nightly
+    allow_failures:
+        - php: nightly
+
+cache:
+    directories:
+        - $HOME/.composer
+        - $HOME/.phive
+
+before_install:
+    - sudo apt-get update
+    - sudo apt-get -y install gnupg-curl
+    - composer self-update
+    - travis_retry wget https://phar.io/releases/phive.phar
+    - travis_retry wget https://phar.io/releases/phive.phar.asc
+    - travis_retry gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x6AF725270AB81E04D79442549D8A98B29B2D5D79
+    - gpg --verify phive.phar.asc phive.phar
+
+install:
+    - composer install
+    - travis_retry php phive.phar install --trust-gpg-keys 4AA394086372C20A,E82B2FB314E9906E
+
+script:
+    - make build
